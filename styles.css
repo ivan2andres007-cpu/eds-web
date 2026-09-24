@@ -1810,22 +1810,7 @@ a:focus-visible {
 }
 
 @media (max-width: 768px) {
-  .nav-links,
-  .header-actions .btn-whatsapp {
-    display: none;
-  }
-
-  .mobile-nav-toggle {
-    display: flex;
-  }
-
-  .site-header {
-    background: rgba(10, 10, 15, 0.96);
-    backdrop-filter: blur(16px);
-  }
-
-  /* Full Screen Mobile Drawer */
-  .mobile-drawer {
+  .nav-links {
     position: fixed;
     top: 68px;
     left: 0;
@@ -1838,6 +1823,7 @@ a:focus-visible {
     padding: 24px 20px max(30px, env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
     transform: translateY(-110%);
     opacity: 0;
@@ -1849,20 +1835,31 @@ a:focus-visible {
     overflow-y: auto;
   }
 
-  .mobile-drawer.open {
+  .nav-links.open {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
 
-  .mobile-drawer .nav-link {
+  .nav-links .nav-link {
     font-size: 1.25rem;
     font-weight: 700;
     padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+  }
+
+  .header-actions .btn-whatsapp {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+  }
+
+  .site-header {
+    background: rgba(10, 10, 15, 0.96);
+    backdrop-filter: blur(16px);
   }
 
   .hero-section {
