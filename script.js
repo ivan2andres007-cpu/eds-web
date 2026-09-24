@@ -17,35 +17,32 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavbar() {
   const header = document.querySelector('.site-header');
   const toggleBtn = document.querySelector('.mobile-nav-toggle');
-  const drawer = document.querySelector('.mobile-drawer');
+  const navList = document.querySelector('.nav-links');
   const navLinks = document.querySelectorAll('.nav-link');
 
   // Sticky header with passive scroll listener
-  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > 40) {
+    if (window.scrollY > 40) {
       header?.classList.add('scrolled');
     } else {
       header?.classList.remove('scrolled');
     }
-    lastScrollY = currentScrollY;
   }, { passive: true });
 
-  // Mobile drawer toggle
-  if (toggleBtn && drawer) {
+  // Mobile menu toggle directly on primary navigation
+  if (toggleBtn && navList) {
     toggleBtn.addEventListener('click', () => {
-      const isOpen = drawer.classList.toggle('open');
+      const isOpen = navList.classList.toggle('open');
       toggleBtn.classList.toggle('open', isOpen);
       toggleBtn.setAttribute('aria-expanded', String(isOpen));
       document.body.classList.toggle('drawer-open', isOpen);
     });
 
-    // Close drawer on link click
+    // Close on link click
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (drawer.classList.contains('open')) {
-          drawer.classList.remove('open');
+        if (navList.classList.contains('open')) {
+          navList.classList.remove('open');
           toggleBtn.classList.remove('open');
           toggleBtn.setAttribute('aria-expanded', 'false');
           document.body.classList.remove('drawer-open');
@@ -53,10 +50,10 @@ function initNavbar() {
       });
     });
 
-    // Close drawer on ESC key
+    // Close on ESC key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        drawer.classList.remove('open');
+      if (e.key === 'Escape' && navList.classList.contains('open')) {
+        navList.classList.remove('open');
         toggleBtn.classList.remove('open');
         toggleBtn.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('drawer-open');
